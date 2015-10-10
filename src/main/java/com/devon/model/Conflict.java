@@ -1,6 +1,6 @@
 package com.devon.model;
 
-import com.devon.model.conflict.Component;
+import com.devon.model.component.Component;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;

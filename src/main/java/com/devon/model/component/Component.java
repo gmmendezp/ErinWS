@@ -1,4 +1,4 @@
-package com.devon.model.conflict;
+package com.devon.model.component;
 
 public class Component {
 	public String type;

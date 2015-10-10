@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/conflict")
-public class ConflictController {
+public class ComponentController {
 
 	@Autowired
 	ConflictRepository conflictRepository;
@@ -27,9 +27,9 @@ public class ConflictController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public Conflict addConflict(
-		@RequestParam(value = "firstUserId", required = true) java.lang.String firstUserId,
-		@RequestParam(value = "secondUserId", required = true) java.lang.String secondUserId,
-		@RequestParam(value = "mediatorId", required = true) java.lang.String mediatorId
+		@RequestParam(value = "firstUserId", required = true) String firstUserId,
+		@RequestParam(value = "secondUserId", required = true) String secondUserId,
+		@RequestParam(value = "mediatorId", required = true) String mediatorId
 	) {
 
 		//FAIL FAST
@@ -54,7 +54,7 @@ public class ConflictController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public Conflict getConflict(
-		@RequestParam(value = "id", required = true) java.lang.String id) {
+		@RequestParam(value = "id", required = true) String id) {
 
 		Conflict conflict = conflictRepository.findOne(id);
 		conflict.setFirstUser(userRepository.findOne(conflict.getFirstUser().getId()));

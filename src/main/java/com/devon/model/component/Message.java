@@ -1,6 +1,4 @@
-package com.devon.model.conflict;
-
-import com.devon.model.User;
+package com.devon.model.component;
 
 public class Message extends Component {
 
