@@ -1,13 +1,19 @@
 package com.devon.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import org.springframework.data.annotation.Id;
+
+import java.util.Map;
 
 public class ComponentMetaData {
 
 	@Id
 	private String id;
 
-	private String metaData;
+	private Map metaData;
 
 	public String getId() {
 		return id;
@@ -17,24 +23,12 @@ public class ComponentMetaData {
 		this.id = id;
 	}
 
-	public String getMetaData() {
+	public Map getMetaData() {
 		return metaData;
 	}
 
-	public void setMetaData(String metaData) {
+	public void setMetaData(Map metaData) {
 		this.metaData = metaData;
 	}
 
-	public ComponentMetaData() {
-
-	}
-
-	public ComponentMetaData(String metaData) {
-		this.metaData = metaData;
-	}
-
-	public ComponentMetaData(String id, String metaData) {
-		this.id = id;
-		this.metaData = metaData;
-	}
 }
