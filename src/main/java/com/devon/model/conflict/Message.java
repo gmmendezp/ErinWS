@@ -6,7 +6,7 @@ public class Message extends Component {
 
 	private String value;
 
-	private User user;
+	private String userId;
 
 	public String getValue() {
 		return value;
@@ -16,12 +16,12 @@ public class Message extends Component {
 		this.value = value;
 	}
 
-	public User getUser() {
-		return user;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public Message() {

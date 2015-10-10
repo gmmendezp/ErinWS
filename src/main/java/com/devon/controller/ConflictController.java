@@ -63,15 +63,15 @@ public class ConflictController {
 		conflict.setMediator(userRepository.findOne(conflict.getMediator().getId()));
 
 		Message message1 = new Message();
-		message1.setUser(conflict.getFirstUser());
+		message1.setUserId(conflict.getFirstUser().getId());
 		message1.setValue("I hate you");
 
 		Message message2 = new Message();
-		message2.setUser(conflict.getSecondUser());
+		message2.setUserId(conflict.getSecondUser().getId());
 		message2.setValue("I do too.");
 
 		Message message3 = new Message();
-		message3.setUser(conflict.getMediator());
+		message3.setUserId(conflict.getMediator().getId());
 		message3.setValue("Ok staph");
 
 		conflict.addComponent(message1);
