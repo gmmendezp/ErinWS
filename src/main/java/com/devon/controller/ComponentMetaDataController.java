@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/component/metadata")
 public class ComponentMetaDataController {
@@ -47,7 +49,12 @@ public class ComponentMetaDataController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ComponentMetaData getComponentMetadata(
-		@RequestParam(value = "id", required = true) String id) {
+		@RequestParam(value = "id") String id) {
 		return componentMetaDataRepository.findOne(id);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/all")
+	public Collection<ComponentMetaData> getAllComponentMetadata() {
+		return componentMetaDataRepository.findAll();
 	}
 }
