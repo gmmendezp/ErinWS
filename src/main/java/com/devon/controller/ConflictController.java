@@ -2,6 +2,7 @@ package com.devon.controller;
 
 import com.devon.model.Conflict;
 import com.devon.model.User;
+import com.devon.model.conflict.Message;
 import com.devon.repository.ConflictRepository;
 import com.devon.repository.UserRepository;
 import org.slf4j.Logger;
@@ -61,6 +62,21 @@ public class ConflictController {
 		conflict.setSecondUser(userRepository.findOne(conflict.getSecondUser().getId()));
 		conflict.setMediator(userRepository.findOne(conflict.getMediator().getId()));
 
+		Message message1 = new Message();
+		message1.setUser(conflict.getFirstUser());
+		message1.setValue("I hate you");
+
+		Message message2 = new Message();
+		message2.setUser(conflict.getSecondUser());
+		message2.setValue("I do too.");
+
+		Message message3 = new Message();
+		message3.setUser(conflict.getMediator());
+		message3.setValue("Ok staph");
+
+		conflict.addComponent(message1);
+		conflict.addComponent(message2);
+		conflict.addComponent(message3);
 		return conflict;
 	}
 }
