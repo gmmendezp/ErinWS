@@ -29,6 +29,10 @@ public class ComponentMetaData {
 
 	}
 
+	public ComponentMetaData(String metaData) {
+		this.metaData = metaData;
+	}
+
 	public ComponentMetaData(String id, String metaData) {
 		this.id = id;
 		this.metaData = metaData;
