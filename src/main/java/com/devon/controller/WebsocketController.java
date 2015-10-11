@@ -44,11 +44,11 @@ public class WebsocketController {
 		conflictService.addConflictAnswer(conflictId, answer);
 		return answer;
 	}
-//
-//	@MessageMapping("/Components/{conflictId}/Call")
-//	@SendTo("/Output/Components")
-//	public Call postConflictForm(@RequestBody Call call, @DestinationVariable String conflictId) {
-//		conflictService.addConflictCall(conflictId, call);
-//		return call;
-//	}
+
+	@MessageMapping("/Components/{conflictId}/Call")
+	@SendTo("/Output/Components")
+	public Call postConflictForm(@RequestBody Call call, @DestinationVariable String conflictId) {
+		conflictService.addConflictCall(conflictId, call);
+		return call;
+	}
 }
