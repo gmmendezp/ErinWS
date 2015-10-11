@@ -1,21 +1,22 @@
 package com.devon.model.component;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Answer extends Component {
 
-	private Collection<String> answer;
+	private ArrayList<String> answer;
 	private String question;
 
 	public Answer() {
 		setType("ANSWER");
 	}
 
-	public Collection<String> getAnswer() {
+	public ArrayList<String> getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(Collection<String> answer) {
+	public void setAnswer(ArrayList<String> answer) {
 		this.answer = answer;
 	}
 
