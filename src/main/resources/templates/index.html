@@ -6,59 +6,52 @@
 		<script type="text/javascript" rel="javascript"
 				src="https://rawgit.com/jmesnil/stomp-websocket/master/lib/stomp.min.js"></script>
 		<script type="text/javascript">
-			var stompClient = null;
 
-			function setConnected(connected) {
-				document.getElementById('connect').disabled = connected;
-				document.getElementById('disconnect').disabled = !connected;
-				document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
-				document.getElementById('response').innerHTML = '';
-			}
+			function createWebSocket(host, inputPath, outputPath, receiveCallback) {
+				var stompClient = null;
 
-			function connect() {
-				var socket = new SockJS('/erin/WebSockets');
-				stompClient = Stomp.over(socket);
+				function doConnect() {
+					var socket = new SockJS(host);
+					stompClient = Stomp.over(socket);
 
-				stompClient.connect({}, function (frame) {
-					setConnected(true);
-					console.log('Connected: ' + frame);
-					stompClient.subscribe('/Output/Components', function (component) {
-						console.log(JSON.parse(component.body).content);
+					stompClient.connect({}, function (frame) {
+						console.log('Connected: ' + frame);
+						stompClient.subscribe(outputPath, receiveCallback);
 					});
-				});
-			}
-
-			function disconnect() {
-				if (stompClient != null) {
-					stompClient.disconnect();
 				}
-				setConnected(false);
-				console.log("Disconnected");
+
+				function doDisconnect() {
+					if (stompClient != null) {
+						stompClient.disconnect();
+					}
+					console.log("Disconnected");
+				}
+
+				function doSend(json) {
+					stompClient.send(inputPath, {}, JSON.stringify(json));
+				}
+
+				return {send: doSend, connect: doConnect, disconnect: doDisconnect}
 			}
 
-			function sendName() {
-				stompClient.send("/Input/Components/Message", {},
-					JSON.stringify({
-						"userId": "1",
-						"value": "I hate you"
-					}));
-			}
+			var websocket = createWebSocket(
+				'/erin/WebSockets', "/Input/Components/Message", '/Output/Components',
+				function (component) {
+					console.log(JSON.parse(component.body));
+				}
+			);
+
 		</script>
 	</head>
-	<body onload="disconnect()">
+	<body onload="websocket.disconnect()">
 		<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on
 			Javascript being enabled. Please enable
 			Javascript and reload this page!</h2></noscript>
 		<div>
-			<div>
-				<button id="connect" onclick="connect();">Connect</button>
-				<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
-			</div>
-			<div id="conversationDiv">
-				<label>What is your name?</label><input type="text" id="name"/>
-				<button id="sendName" onclick="sendName();">Send</button>
-				<p id="response"></p>
-			</div>
+			<button onclick="websocket.connect();">Connect</button>
+			<button onclick="websocket.disconnect();">Disconnect</button>
+			<button onclick="websocket.send({'userId': '1','value': 'I hate you'});">Send
+			</button>
 		</div>
 	</body>
 </html>
