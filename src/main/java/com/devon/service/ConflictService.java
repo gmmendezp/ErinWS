@@ -39,7 +39,6 @@ public class ConflictService {
 
 	}
 
-	@Autowired
 	public void addConflictForm(String conflictId, Form form) {
 
 		if (form.getId() == null) {
