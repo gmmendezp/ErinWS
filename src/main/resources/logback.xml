@@ -2,7 +2,7 @@
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml"/>
 	<logger name="com.mongodb" level="WARN"/>
-	<logger name="org.springframework.data" level="WARN"/>
+	<logger name="org.springframework.data" level="INFO"/>
 
-	<root level="WARN"/>
+	<root level="INFO"/>
 </configuration>
