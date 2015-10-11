@@ -60,7 +60,6 @@ public class ConflictController {
 		conflictRepository.delete(id);
 	}
 
-
 	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/message")
 	public Message postConflictMessage(@RequestBody Message message, @PathVariable String conflictId) {
 		conflictService.addConflictMessage(conflictId, message);

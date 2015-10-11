@@ -22,8 +22,8 @@
 				stompClient.connect({}, function (frame) {
 					setConnected(true);
 					console.log('Connected: ' + frame);
-					stompClient.subscribe('/topic/greetings', function (greeting) {
-						showGreeting(greeting);
+					stompClient.subscribe('/Output/Components', function (component) {
+						console.log(JSON.parse(component.body).content);
 					});
 				});
 			}
@@ -37,11 +37,11 @@
 			}
 
 			function sendName() {
-				stompClient.send("/app/hello", {}, "pewwww");
-			}
-
-			function showGreeting(message) {
-				console.log(message);
+				stompClient.send("/Input/Components/Message", {},
+					JSON.stringify({
+						"userId": "1",
+						"value": "I hate you"
+					}));
 			}
 		</script>
 	</head>
