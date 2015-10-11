@@ -1,6 +1,7 @@
 package com.devon.controller;
 
 import com.devon.model.component.Answer;
+import com.devon.model.component.Call;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import com.devon.service.ConflictService;
@@ -42,5 +43,12 @@ public class WebsocketController {
 	public Answer postConflictForm(@RequestBody Answer answer, @DestinationVariable String conflictId) {
 		conflictService.addConflictAnswer(conflictId, answer);
 		return answer;
+	}
+
+	@MessageMapping("/Components/{conflictId}/Call")
+	@SendTo("/Output/Components")
+	public Call postConflictForm(@RequestBody Call call, @DestinationVariable String conflictId) {
+		conflictService.addConflictCall(conflictId, call);
+		return call;
 	}
 }

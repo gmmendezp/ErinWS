@@ -6,9 +6,9 @@ import java.util.Date;
 
 public class Component {
 
+	public String type;
 	@Id
 	private String id;
-	public String type;
 	private String userId;
 	private Date timestamp;
 

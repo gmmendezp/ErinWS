@@ -7,6 +7,10 @@ public class Answer extends Component {
 	private Map answer;
 	private String question;
 
+	public Answer() {
+		setType("ANSWER");
+	}
+
 	public Map getAnswer() {
 		return answer;
 	}
@@ -21,9 +25,5 @@ public class Answer extends Component {
 
 	public void setQuestion(String question) {
 		this.question = question;
-	}
-
-	public Answer() {
-		setType("ANSWER");
 	}
 }

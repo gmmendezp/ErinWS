@@ -2,6 +2,7 @@ package com.devon.service;
 
 import com.devon.model.PreConflictStep;
 import com.devon.model.component.Answer;
+import com.devon.model.component.Call;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import org.bson.types.ObjectId;
@@ -83,6 +84,18 @@ public class ConflictService {
 		mongoOperations.updateFirst(
 			query(where(COLLECTION_ID).is(conflictId)),
 			new Update().push(PRE_CONFLICT_STEP_PROP_NAME, preConflictStep), (String) COLLECTION_NAME);
+
+	}
+
+	public void addConflictCall(String conflictId, Call call) {
+
+		if (call.getId() == null) {
+			call.setId(ObjectId.get().toString());
+		}
+
+		mongoOperations.updateFirst(
+			query(where(COLLECTION_ID).is(conflictId)),
+			new Update().push(COMPONENT_PROP_NAME, call), (String) COLLECTION_NAME);
 
 	}
 }
