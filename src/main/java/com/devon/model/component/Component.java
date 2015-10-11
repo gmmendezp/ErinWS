@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
-public abstract class Component {
+public class Component {
 
 	@Id
 	private String id;

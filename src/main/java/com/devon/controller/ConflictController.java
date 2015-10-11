@@ -71,7 +71,7 @@ public class ConflictController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/message")
 	public Message postConflictMessage(@RequestBody Message message, @PathVariable String conflictId) {
-		componentRepository.save(message);
+		conflictService.addConflictMessage(conflictId, message);
 		return message;
 	}
 
