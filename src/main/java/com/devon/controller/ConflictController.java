@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/conflict")
 public class ConflictController {
 
+	public final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	ConflictRepository conflictRepository;
-
 	@Autowired
 	UserRepository userRepository;
-
-	public final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@RequestMapping(method = RequestMethod.POST)
 	public Conflict addConflict(@RequestBody Conflict conflict) {

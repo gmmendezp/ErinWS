@@ -1,9 +1,5 @@
 package com.devon.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
 import org.springframework.data.annotation.Id;
 
 import java.util.Map;
