@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
@@ -22,7 +24,14 @@ public class ConflictService {
 
 	public void addConflictMessage(String conflictId, Message message) {
 
-		message.setId(ObjectId.get().toString());
+		if (message.getId() == null) {
+			message.setId(ObjectId.get().toString());
+		}
+
+		if (message.getTimestamp() == null) {
+			message.setTimestamp(Calendar.getInstance().getTime());
+		}
+
 		mongoOperations.updateFirst(
 			query(where(COLLECTION_ID).is(conflictId)),
 			new Update().push(COMPONENT_PROP_NAME, message), (String) COLLECTION_NAME);
