@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
 import java.util.Collection;
 
 @RestController
@@ -54,6 +53,11 @@ public class ConflictController {
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Conflict> getConflict() {
 		return conflictRepository.findAll();
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+	public void deleteConflict(@PathVariable String id) {
+		conflictRepository.delete(id);
 	}
 
 
