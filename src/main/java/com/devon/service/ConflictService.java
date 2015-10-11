@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConflictService {
 
+	private static final String COLLECTION_NAME = "conflict";
+
 	@Autowired
 	private MongoOperations mongoOperations;
 
 	public void addConflictMessage(String conflictId, Message message){
 
-//		mongoOperations.upsert()
+//		mongoOperations.upsert(,,"conflict")
 
 	}
 }

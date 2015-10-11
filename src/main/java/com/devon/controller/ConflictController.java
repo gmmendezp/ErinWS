@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
+
 @RestController
 @RequestMapping("/conflict")
 public class ConflictController {
@@ -48,14 +51,17 @@ public class ConflictController {
 		Message message1 = new Message();
 		message1.setUserId(conflict.getFirstUser().getId());
 		message1.setValue("I hate you");
+		message1.setTimestamp(Calendar.getInstance().getTime());
 
 		Message message2 = new Message();
 		message2.setUserId(conflict.getSecondUser().getId());
 		message2.setValue("I do too.");
+		message2.setTimestamp(Calendar.getInstance().getTime());
 
 		Message message3 = new Message();
 		message3.setUserId(conflict.getMediator().getId());
 		message3.setValue("Ok staph");
+		message3.setTimestamp(Calendar.getInstance().getTime());
 
 		conflict.addComponent(message1);
 		conflict.addComponent(message2);
