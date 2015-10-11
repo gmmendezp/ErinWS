@@ -22,14 +22,14 @@ public class WebsocketController {
 		return "index";
 	}
 
-	@MessageMapping("/Components/Message")
+	@MessageMapping("/Components/{conflictId}/Message")
 	@SendTo("/Output/Components")
 	public Message postConflictMessage(@RequestBody Message message, @PathVariable String conflictId) {
 		conflictService.addConflictMessage(conflictId, message);
 		return message;
 	}
 
-	@MessageMapping("/Components/Form")
+	@MessageMapping("/Components/{conflictId}/Form")
 	@SendTo("/Output/Components")
 	public Form postConflictForm(@RequestBody Form form, @PathVariable String conflictId) {
 		conflictService.addConflictForm(conflictId, form);
