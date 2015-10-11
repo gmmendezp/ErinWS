@@ -2,6 +2,7 @@ package com.devon.controller;
 
 import com.devon.model.Conflict;
 import com.devon.model.PreConflictStep;
+import com.devon.model.component.Answer;
 import com.devon.model.component.Component;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
@@ -84,6 +85,12 @@ public class ConflictController {
 	public Form postConflictForm(@RequestBody Form form, @PathVariable String conflictId) {
 		conflictService.addConflictForm(conflictId, form);
 		return form;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/answer")
+	public Answer postConflictForm(@RequestBody Answer answer, @PathVariable String conflictId) {
+		conflictService.addConflictAnswer(conflictId, answer);
+		return answer;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/preConflictStep")

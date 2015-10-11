@@ -1,6 +1,7 @@
 package com.devon.service;
 
 import com.devon.model.PreConflictStep;
+import com.devon.model.component.Answer;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import org.bson.types.ObjectId;
@@ -54,6 +55,22 @@ public class ConflictService {
 		mongoOperations.updateFirst(
 			query(where(COLLECTION_ID).is(conflictId)),
 			new Update().push(COMPONENT_PROP_NAME, form), (String) COLLECTION_NAME);
+
+	}
+
+	public void addConflictAnswer(String conflictId, Answer answer) {
+
+		if (answer.getId() == null) {
+			answer.setId(ObjectId.get().toString());
+		}
+
+		if (answer.getTimestamp() == null) {
+			answer.setTimestamp(Calendar.getInstance().getTime());
+		}
+
+		mongoOperations.updateFirst(
+			query(where(COLLECTION_ID).is(conflictId)),
+			new Update().push(COMPONENT_PROP_NAME, answer), (String) COLLECTION_NAME);
 
 	}
 
