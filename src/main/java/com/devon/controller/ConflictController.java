@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/conflict")
@@ -47,26 +48,14 @@ public class ConflictController {
 		conflict.setSecondUser(userRepository.findOne(conflict.getSecondUser().getId()));
 		conflict.setMediator(userRepository.findOne(conflict.getMediator().getId()));
 
-		Message message1 = new Message();
-		message1.setUserId(conflict.getFirstUser().getId());
-		message1.setValue("I hate you");
-		message1.setTimestamp(Calendar.getInstance().getTime());
-
-		Message message2 = new Message();
-		message2.setUserId(conflict.getSecondUser().getId());
-		message2.setValue("I do too.");
-		message2.setTimestamp(Calendar.getInstance().getTime());
-
-		Message message3 = new Message();
-		message3.setUserId(conflict.getMediator().getId());
-		message3.setValue("Ok staph");
-		message3.setTimestamp(Calendar.getInstance().getTime());
-
-		conflict.addComponent(message1);
-		conflict.addComponent(message2);
-		conflict.addComponent(message3);
 		return conflict;
 	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public Collection<Conflict> getConflict() {
+		return conflictRepository.findAll();
+	}
+
 
 	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/message")
 	public Message postConflictMessage(@RequestBody Message message, @PathVariable String conflictId) {
