@@ -9,6 +9,15 @@ public class PreConflictStep {
 	private String title;
 	private String descriptor;
 	private String helpLink;
+	private boolean approved;
+
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
 
 	public String getTitle() {
 		return title;

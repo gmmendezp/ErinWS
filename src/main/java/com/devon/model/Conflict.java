@@ -13,6 +13,7 @@ public class Conflict {
 	private User secondUser;
 	private User mediator;
 	private Collection<Component> components = new ArrayList<Component>();
+	private Collection<PreConflictStep> preConflictSteps = new ArrayList<PreConflictStep>();
 
 	public User getMediator() {
 		return mediator;
@@ -60,5 +61,22 @@ public class Conflict {
 
 	public boolean addComponent(Component component) {
 		return getComponents().add(component);
+	}
+
+	public Collection<PreConflictStep> getPreConflictSteps() {
+
+		return preConflictSteps;
+	}
+
+	public void setPreConflictSteps(Collection<PreConflictStep> preConflictSteps) {
+		this.preConflictSteps = preConflictSteps;
+	}
+
+	public boolean addPreConflictStep(PreConflictStep preConflictStep) {
+		return getPreConflictSteps().add(preConflictStep);
+	}
+
+	public boolean removePreConflictStep(Object o) {
+		return getPreConflictSteps().remove(o);
 	}
 }

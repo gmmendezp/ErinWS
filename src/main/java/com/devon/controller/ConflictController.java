@@ -1,11 +1,13 @@
 package com.devon.controller;
 
 import com.devon.model.Conflict;
+import com.devon.model.PreConflictStep;
 import com.devon.model.component.Component;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import com.devon.repository.ComponentRepository;
 import com.devon.repository.ConflictRepository;
+import com.devon.repository.PreConflictStepRepository;
 import com.devon.repository.UserRepository;
 import com.devon.service.ConflictService;
 import org.slf4j.Logger;
@@ -33,6 +35,9 @@ public class ConflictController {
 
 	@Autowired
 	ComponentRepository componentRepository;
+
+	@Autowired
+	PreConflictStepRepository preConflictStepRepository;
 
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -79,6 +84,12 @@ public class ConflictController {
 	public Form postConflictForm(@RequestBody Form form, @PathVariable String conflictId) {
 		conflictService.addConflictForm(conflictId, form);
 		return form;
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/preConflictStep")
+	public PreConflictStep postConflictForm(@RequestBody PreConflictStep preConflictStep, @PathVariable String conflictId) {
+		conflictService.addConflictPreConflictStep(conflictId, preConflictStep);
+		return preConflictStep;
 	}
 
 //	RequestMapping(method = RequestMethod.GET, value = "{id}")

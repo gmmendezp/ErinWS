@@ -1,5 +1,6 @@
 package com.devon.service;
 
+import com.devon.model.PreConflictStep;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import org.bson.types.ObjectId;
@@ -19,6 +20,7 @@ public class ConflictService {
 	private static final String COLLECTION_ID = "_id";
 	private static final String COLLECTION_NAME = "conflict";
 	private static final String COMPONENT_PROP_NAME = "components";
+	private static final String PRE_CONFLICT_STEP_PROP_NAME = "preConflictStep";
 
 	@Autowired
 	private MongoOperations mongoOperations;
@@ -52,6 +54,18 @@ public class ConflictService {
 		mongoOperations.updateFirst(
 			query(where(COLLECTION_ID).is(conflictId)),
 			new Update().push(COMPONENT_PROP_NAME, form), (String) COLLECTION_NAME);
+
+	}
+
+	public void addConflictPreConflictStep(String conflictId, PreConflictStep preConflictStep) {
+
+		if (preConflictStep.getId() == null) {
+			preConflictStep.setId(ObjectId.get().toString());
+		}
+
+		mongoOperations.updateFirst(
+			query(where(COLLECTION_ID).is(conflictId)),
+			new Update().push(PRE_CONFLICT_STEP_PROP_NAME, preConflictStep), (String) COLLECTION_NAME);
 
 	}
 }
