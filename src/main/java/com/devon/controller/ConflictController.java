@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/conflict")
@@ -77,7 +76,12 @@ public class ConflictController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/form")
 	public Form postConflictForm(@RequestBody Form form, @PathVariable String conflictId) {
-		componentRepository.save(form);
+		conflictService.addConflictForm(conflictId, form);
 		return form;
 	}
+
+//	RequestMapping(method = RequestMethod.GET, value = "{id}")
+//	public Component getComponent(@PathVariable String id) {
+//		return componentRepository.findOne(id);
+//	}
 }

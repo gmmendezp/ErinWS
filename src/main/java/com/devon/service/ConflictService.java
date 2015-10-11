@@ -1,5 +1,6 @@
 package com.devon.service;
 
+import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,23 @@ public class ConflictService {
 		mongoOperations.updateFirst(
 			query(where(COLLECTION_ID).is(conflictId)),
 			new Update().push(COMPONENT_PROP_NAME, message), (String) COLLECTION_NAME);
+
+	}
+
+	@Autowired
+	public void addConflictForm(String conflictId, Form form) {
+
+		if (form.getId() == null) {
+			form.setId(ObjectId.get().toString());
+		}
+
+		if (form.getTimestamp() == null) {
+			form.setTimestamp(Calendar.getInstance().getTime());
+		}
+
+		mongoOperations.updateFirst(
+			query(where(COLLECTION_ID).is(conflictId)),
+			new Update().push(COMPONENT_PROP_NAME, form), (String) COLLECTION_NAME);
 
 	}
 }
