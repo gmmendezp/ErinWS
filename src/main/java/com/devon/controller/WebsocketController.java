@@ -1,5 +1,6 @@
 package com.devon.controller;
 
+import com.devon.model.component.Answer;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import com.devon.service.ConflictService;
@@ -8,7 +9,6 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,5 +35,12 @@ public class WebsocketController {
 	public Form postConflictForm(@RequestBody Form form, @DestinationVariable String conflictId) {
 		conflictService.addConflictForm(conflictId, form);
 		return form;
+	}
+
+	@MessageMapping("/Components/{conflictId}/Answer")
+	@SendTo("/Output/Components")
+	public Answer postConflictForm(@RequestBody Answer answer, @DestinationVariable String conflictId) {
+		conflictService.addConflictAnswer(conflictId, answer);
+		return answer;
 	}
 }
