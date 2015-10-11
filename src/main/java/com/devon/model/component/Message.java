@@ -4,8 +4,6 @@ public class Message extends Component {
 
 	private String value;
 
-	private String userId;
-
 	public Message() {
 		this.setType("MESSAGE");
 	}
@@ -18,11 +16,4 @@ public class Message extends Component {
 		this.value = value;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 }
