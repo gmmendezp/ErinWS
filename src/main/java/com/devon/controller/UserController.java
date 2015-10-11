@@ -13,7 +13,7 @@ public class UserController {
 	UserRepository userRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public User addUser(@RequestBody User user) {
+	public User postUser(@RequestBody User user) {
 		userRepository.save(user);
 		return user;
 	}

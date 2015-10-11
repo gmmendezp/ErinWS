@@ -2,12 +2,23 @@ package com.devon.model.component;
 
 import org.springframework.data.annotation.Id;
 
-public class Component {
+import java.util.Date;
+
+public abstract class Component {
 
 	@Id
 	private String id;
 	public String type;
 	private String userId;
+	private Date timestamp;
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	public String getUserId() {
 		return userId;

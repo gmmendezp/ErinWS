@@ -35,7 +35,14 @@ public class ComponentMetaDataController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Collection<ComponentMetaData> getAllComponentMetadata() {
+	public Collection<ComponentMetaData> getComponentMetadata() {
 		return componentMetaDataRepository.findAll();
 	}
+
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+	public void deleteComponentMetadata(@PathVariable String id) {
+		componentMetaDataRepository.delete(id);
+	}
+
 }
