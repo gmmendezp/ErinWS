@@ -1,21 +1,21 @@
 package com.devon.model.component;
 
-import java.util.Map;
+import java.util.Collection;
 
 public class Answer extends Component {
 
-	private Map answer;
+	private Collection<String> answer;
 	private String question;
 
 	public Answer() {
 		setType("ANSWER");
 	}
 
-	public Map getAnswer() {
+	public Collection<String> getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(Map answer) {
+	public void setAnswer(Collection<String> answer) {
 		this.answer = answer;
 	}
 
