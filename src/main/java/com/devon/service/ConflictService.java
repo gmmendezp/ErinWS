@@ -1,6 +1,7 @@
 package com.devon.service;
 
 import com.devon.model.component.Message;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
@@ -21,6 +22,7 @@ public class ConflictService {
 
 	public void addConflictMessage(String conflictId, Message message) {
 
+		message.setId(ObjectId.get().toString());
 		mongoOperations.updateFirst(
 			query(where(COLLECTION_ID).is(conflictId)),
 			new Update().push(COMPONENT_PROP_NAME, message), (String) COLLECTION_NAME);
