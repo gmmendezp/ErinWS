@@ -93,6 +93,11 @@ public class ConflictService {
 			call.setId(ObjectId.get().toString());
 		}
 
+
+		if (call.getTimestamp() == null) {
+			call.setTimestamp(Calendar.getInstance().getTime());
+		}
+
 		mongoOperations.updateFirst(
 			query(where(COLLECTION_ID).is(conflictId)),
 			new Update().push(COMPONENT_PROP_NAME, call), (String) COLLECTION_NAME);
