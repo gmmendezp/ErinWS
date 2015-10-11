@@ -7,6 +7,7 @@ public class User {
 	@Id
 	private String id;
 	private String thumbnail;
+	private String smallImage;
 	private String name;
 	private String type;
 
@@ -16,6 +17,14 @@ public class User {
 	public User(String id, String type) {
 		this.id = id;
 		this.type = type;
+	}
+
+	public String getSmallImage() {
+		return smallImage;
+	}
+
+	public void setSmallImage(String smallImage) {
+		this.smallImage = smallImage;
 	}
 
 	public String getThumbnail() {
