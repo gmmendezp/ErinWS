@@ -10,6 +10,7 @@ public class User {
 	private String smallImage;
 	private String name;
 	private String type;
+	private String email;
 
 	public User() {
 	}
@@ -17,6 +18,14 @@ public class User {
 	public User(String id, String type) {
 		this.id = id;
 		this.type = type;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSmallImage() {
