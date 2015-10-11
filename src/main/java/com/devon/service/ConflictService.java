@@ -20,7 +20,7 @@ public class ConflictService {
 	private static final String COLLECTION_ID = "_id";
 	private static final String COLLECTION_NAME = "conflict";
 	private static final String COMPONENT_PROP_NAME = "components";
-	private static final String PRE_CONFLICT_STEP_PROP_NAME = "preConflictStep";
+	private static final String PRE_CONFLICT_STEP_PROP_NAME = "preConflictSteps";
 
 	@Autowired
 	private MongoOperations mongoOperations;
