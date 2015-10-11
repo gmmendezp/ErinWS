@@ -1,6 +1,7 @@
 package com.devon.controller;
 
 import com.devon.model.Conflict;
+import com.devon.model.component.Component;
 import com.devon.model.component.Form;
 import com.devon.model.component.Message;
 import com.devon.repository.ComponentRepository;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/conflict")
@@ -58,6 +60,13 @@ public class ConflictController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
 	public void deleteConflict(@PathVariable String id) {
 		conflictRepository.delete(id);
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "{id}/components")
+	public void deleteConflictComponents(@PathVariable String id) {
+		Conflict conflict = conflictRepository.findOne(id);
+		conflict.setComponents(Collections.<Component>emptyList());
+		conflictRepository.save(conflict);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "{conflictId}/message")
