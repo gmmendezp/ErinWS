@@ -10,6 +10,14 @@ public class User {
 	private String name;
 	private String type;
 
+	public User() {
+	}
+
+	public User(String id, String type) {
+		this.id = id;
+		this.type = type;
+	}
+
 	public String getThumbnail() {
 		return thumbnail;
 	}
@@ -39,14 +47,6 @@ public class User {
 	}
 
 	public void setType(String type) {
-		this.type = type;
-	}
-
-	public User() {
-	}
-
-	public User(String id, String type) {
-		this.id = id;
 		this.type = type;
 	}
 }

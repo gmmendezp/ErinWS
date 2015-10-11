@@ -13,10 +13,9 @@ import java.util.Collection;
 @RequestMapping("/component/metadata")
 public class ComponentMetaDataController {
 
+	public final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	ComponentMetaDataRepository componentMetaDataRepository;
-
-	public final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ComponentMetaData postComponentMetadata(@RequestBody ComponentMetaData componentMetaData) {
